@@ -7,6 +7,6 @@ In order to access pages from your hosted Atlassion Confluence on GNU Emacs via 
 
      '(confluence-url "https://<hosted-site>/wiki/rpc/xmlrpc")
 
-Where `<hosted-site>` is probably somehere.atlassian.net. Or not. At least in my experience, 100% of the cases (actually a case) it was that way.
+Where `<hosted-site>` is probably somewhere.atlassian.net. Or not. At least in my experience, 100% of the cases (actually a case) it was that way.
 
 [confluence-el]: http://sourceforge.net/p/confluence-el/wiki/Home/

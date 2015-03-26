@@ -12,5 +12,6 @@ Assuming you have a JSON array, each of which has a field labeled "foo", you get
     
 Why do I keep forgetting this?
 
+Hat tip: [jq][jq]
 
-Hat tip: http://stedolan.github.io/jq/
+[jq]: http://stedolan.github.io/jq/
