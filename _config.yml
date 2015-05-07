@@ -1,12 +1,12 @@
 # Site settings
 title: I Am Going to Forget These
-email: your-email@domain.com
+# email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
   Better write it all down
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+# url: "http://yampir.com" # the base hostname & protocol for your site
+# twitter_username: fcdemirci
+# github_username: femnad
 
 # Build settings
 markdown: kramdown
