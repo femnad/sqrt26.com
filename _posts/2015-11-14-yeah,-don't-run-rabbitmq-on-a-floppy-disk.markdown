@@ -10,7 +10,7 @@ If you observe that OpenStack Nova processes (Nova Compute in this case) are stu
     2015-11-26 10:31:33.550 7750 INFO oslo.messaging._drivers.impl_rabbit [req-a66f13cc-4e26-43c6-98bd-fcd89164072c ] Connecting to AMQP server on localhost:5672
     2015-11-26 10:31:33.565 7750 INFO oslo.messaging._drivers.impl_rabbit [req-a66f13cc-4e26-43c6-98bd-fcd89164072c ] Connected to AMQP server on localhost:5672
 
-And all the RabbitMQ connections seem to be blocked:
+And all the RabbitMQ connections seem to be blocked or blocking:
 
     $ sudo rabbitmqctl list_connections
     Listing connections ...
