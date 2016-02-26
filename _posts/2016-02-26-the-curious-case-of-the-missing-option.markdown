@@ -36,7 +36,7 @@ So, for same reason I had to reinstall my OpenStack development environment and 
     2016-02-26 09:25:44.391 2188 TRACE nova NoSuchOptError: no such option in group libvirt: rbd_user
     2016-02-26 09:25:44.391 2188 TRACE nova 
 
-But strangely, I encountered no errors when I tried to run nova-compute installed via Ubuntu 14.04 Cloud Archive Packages. So I tried to pinpoint the problem. After almost a day of debugging oslo.config I found the culprit; this was a Kilo (2015.4) installation. However, I probably (mistakenly) installed Liberty or master from the cloned repo. So at some stage the build directory inside the repo contained packages for Liberty or later. Here is how the `nova.virt.libvirt` package on Liberty and later looks like:
+But strangely, I encountered no errors when I tried to run nova-compute installed via Ubuntu 14.04 Cloud Archive Packages. So I tried to pinpoint the problem. After almost a day of debugging `oslo.config` I found the culprit; this was a Kilo (2015.4) installation. However, I probably (mistakenly) installed Liberty or master from the cloned repo. So at some stage the build directory inside the repo contained packages for Liberty or later. Here is how the `nova.virt.libvirt` package on Liberty and later looks like:
 
     blockinfo.py  config.py    driver.py    guest.py  imagebackend.py  __init__.py            storage/  vif.py
     compat.py     designer.py  firewall.py  host.py   imagecache.py    instancejobtracker.py  utils.py  volume/
@@ -46,19 +46,19 @@ And for comparison, here is what it looks like on Kilo:
     blockinfo.py  config.py    dmcrypt.py  firewall.py  imagebackend.py  __init__.py            lvm.py      rbd_utils.py  utils.py  volume.py
     compat.py     designer.py  driver.py   host.py      imagecache.py    instancejobtracker.py  quobyte.py  remotefs.py   vif.py
 
-So the volume module has been converted to a package after Kilo. But since I (probably) installed from master, then from Kilo, the build directory had an erroneous structure. That caused oslo.config to fail to register the required options because it failed to import the correct package. Even though I tried multiple virtualenv installations, I didn't clear the build directory so the error persisted through what I assumed were clean installation, but in fact had an incorrect package layout. As far I could discover, at least two other people have been bitten from this behaviour:
+So the volume module has been converted to a package after Kilo. But since I (probably) installed from master, then from Kilo, the build directory had an erroneous structure. That caused `oslo.config` to fail to register the required options because it failed to import the correct package. Even though I tried multiple virtualenv installations, I didn't clear the build directory so the error persisted through what I assumed were clean installations, but in fact had an incorrect package layout. As far as I could discover, at least two other people have been bitten by this behaviour:
 
 
 [A bug report later deemed invalid by the reporter][bug]
 
 [A help request on IRC (jschwarz around 15:25)][irc]
 
-so am I hoping this post may be helpful to anyone encountering this issue. Hopefully not for too long since Kilo will be EOL on May 2016, the 2nd.
+I'm this post may be helpful to anyone encountering this issue. Hopefully not for too long since Kilo will be EOL on May 2016, the 2nd.
 
-So the take-home lessons for me were:
+The take-home lessons for me were:
 
 * Clean your build directory if you are installing consirably different versions of a Python package.
-* Actually clean your build directory no matter what.
+* Actually, clean your build directory no matter what.
 * More actually, design a propaganda poster to remind yourself to clean the build directory every time you run the setup script.
 
 
