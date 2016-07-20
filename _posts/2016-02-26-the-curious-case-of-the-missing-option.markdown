@@ -53,7 +53,7 @@ So the volume module has been converted to a package after Kilo. But since I (pr
 
 [A help request on IRC (jschwarz around 15:25)][irc]
 
-I'm this post may be helpful to anyone encountering this issue. Hopefully not for too long since Kilo will be EOL on May 2016, the 2nd.
+I'm typing this post with hopes that it may be helpful to anyone encountering this issue. Hopefully not for too long since Kilo will be EOL on May 2016, the 2nd.
 
 The take-home lessons for me were:
 
