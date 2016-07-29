@@ -3,7 +3,7 @@ layout: post
 title: Router? I Hardly Knew Her!
 date: '2016-07-29 08:04:14'
 ---
-So, you want enable router and NAT functionality for your Neutron installation so that anyone would be able to create and manage routers? This setup is described as self-service networks by the OpenStack documentantion and requires you to have the `router` `service_plugin` enabled. So in the neutron.conf the line:
+So, you want enable router and NAT functionality for your Neutron installation so that anyone would be able to create and manage routers? This setup is described as self-service networks by the OpenStack documentation and requires you to have the `router` service\_plugin enabled. So in the neutron.conf the line:
 
     service_plugins = router
 
