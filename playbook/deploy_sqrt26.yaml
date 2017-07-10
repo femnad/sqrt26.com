@@ -1,0 +1,122 @@
+---
+- hosts:
+    stuff
+  name:
+    Deploy sqrt26
+
+  vars:
+    deps:
+      apt:
+        - haproxy
+
+    base_domain:
+      sqrt26.com
+    certificate_dir:
+      /etc/haproxy/certs
+    certificate_file:
+      /etc/haproxy/certs/{{ base_domain }}.pem
+    configuration_file:
+      /etc/haproxy/haproxy.cfg
+    public_ip:
+      46.101.134.23
+
+  roles:
+    - packages
+
+  post_tasks:
+    - name:
+        Create certificate dir
+      file:
+        path:
+          "{{ certificate_dir }}"
+        state:
+          directory
+      become:
+        yes
+
+    - name:
+        Combine certificates
+      shell: >-
+        cat /etc/letsencrypt/live/{{ base_domain }}/fullchain.pem
+        /etc/letsencrypt/live/{{ base_domain }}/privkey.pem
+        > {{ certificate_file }}
+      become:
+        yes
+      args:
+        creates:
+          "{{ certificate_file }}"
+
+    - name:
+        Set options global sections
+      lineinfile:
+        path:
+          "{{ configuration_file }}"
+        line:
+          "\ttune.ssl.default-dh-param 2048"
+        state:
+          present
+        insertafter:
+          ^global$
+      become:
+        yes
+      notify:
+        haproxy-restart
+      tags:
+        haproxy
+
+    - name:
+        Set options in default section
+      lineinfile:
+        path:
+          "{{ configuration_file }}"
+        line:
+          "\t{{ item }}"
+        state:
+          present
+        insertafter:
+          ^defaults$
+      with_items:
+        - option forwardfor
+        - option http-server-close
+      become:
+        yes
+      notify:
+        haproxy-restart
+      tags:
+        haproxy
+
+    - name:
+        Add frontends and backend
+      blockinfile:
+        path:
+          "{{ configuration_file }}"
+        block: |
+          frontend www-http
+              bind {{ public_ip }}:80
+              default_backend www-backend
+
+          frontend www-https
+              bind {{ public_ip }}:443 ssl crt {{ certificate_file }}
+              reqadd X-Forwarded-Proto:\ https
+              default_backend www-backend
+
+          backend www-backend
+              redirect scheme https if !{ ssl_fc }
+              server s0 127.0.0.1:4000
+      become:
+        yes
+      notify:
+        haproxy-restart
+      tags:
+        haproxy
+
+  handlers:
+    - name:
+        haproxy-restart
+      service:
+        name:
+          haproxy
+        state:
+          restarted
+      become:
+        yes
