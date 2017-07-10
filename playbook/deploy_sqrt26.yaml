@@ -8,6 +8,14 @@
     deps:
       apt:
         - haproxy
+    repo:
+      url:
+        https://github.com/femnad/sqrt26.com.git
+    user_service:
+      name:
+        jekyll-sqrt26
+      exec:
+        /usr/bin/jekyll -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site
 
     base_domain:
       sqrt26.com
@@ -22,6 +30,8 @@
 
   roles:
     - packages
+    - clone
+    - systemd_user_service
 
   post_tasks:
     - name:
