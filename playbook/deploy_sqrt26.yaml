@@ -17,7 +17,7 @@
       name:
         jekyll-sqrt26
       exec:
-        /usr/bin/jekyll -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site
+        /usr/bin/jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site
 
     base_domain:
       sqrt26.com
