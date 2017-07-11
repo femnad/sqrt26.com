@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Think vindicated.
-date: 2017-07-11 17:15:24
+date: '2017-07-11 17:15:24'
 ---
 - What is best in life my dear Conan person?
 - To confirm your bias. To realize you were right all along. To gather evidence to support the case for everyone else's wrongness. I can you can see where I'm going with this.
