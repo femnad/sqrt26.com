@@ -1,6 +1,6 @@
 ---
 - hosts:
-    all
+    stuff
   name:
     Deploy sqrt26
 
@@ -26,6 +26,14 @@
     - systemd_user_service
 
   post_tasks:
+    - name:
+        Build static files
+      command:
+        jekyll build
+      args:
+        chdir:
+          "{{ source.path }}/jekyll"
+
     - name:
         Restart Jekyll
       systemd:
