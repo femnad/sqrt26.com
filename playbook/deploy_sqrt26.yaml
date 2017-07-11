@@ -25,6 +25,17 @@
     - clone
     - systemd_user_service
 
+  post_tasks:
+    - name:
+        Restart Jekyll
+      systemd:
+        name:
+          jekyll-sqrt26
+        user:
+          yes
+        state:
+          restarted
+
 - import_playbook:
     configure_haproxy.yaml
   tags:
