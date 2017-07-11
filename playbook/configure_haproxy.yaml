@@ -35,12 +35,9 @@
         > {{ certificate_file }}
       become:
         yes
-      args:
-        creates:
-          "{{ certificate_file }}"
 
     - name:
-        Set options global sections
+        Set options in the global section
       lineinfile:
         path:
           "{{ configuration_file }}"
@@ -54,11 +51,9 @@
         yes
       notify:
         haproxy-restart
-      tags:
-        haproxy
 
     - name:
-        Set options in default section
+        Set options in the defaults section
       lineinfile:
         path:
           "{{ configuration_file }}"
@@ -75,8 +70,6 @@
         yes
       notify:
         haproxy-restart
-      tags:
-        haproxy
 
     - name:
         Add frontends and backend
@@ -100,8 +93,6 @@
         yes
       notify:
         haproxy-restart
-      tags:
-        haproxy
 
   handlers:
     - name:

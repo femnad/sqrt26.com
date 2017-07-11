@@ -37,6 +37,11 @@
           restarted
 
 - import_playbook:
+    manage_certificates.yaml
+  tags:
+    certbot
+
+- import_playbook:
     configure_haproxy.yaml
   tags:
     haproxy
