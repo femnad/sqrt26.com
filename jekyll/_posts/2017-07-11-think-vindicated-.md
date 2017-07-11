@@ -3,13 +3,15 @@ layout: post
 title: Think vindicated.
 date: '2017-07-11 17:15:24'
 ---
-- What is best in life my dear Conan person?
-- To confirm your bias. To realize you were right all along. To gather evidence to support the case for everyone else's wrongness. I guess you can see where I'm going with this.
-- Yes, that is mighty good.
+>\- What is best in life my dear Conan person?  
+>\- To confirm your bias. To realize you were right all along. To gather evidence to support the case for everyone else's wrongness. I guess you can see where I'm going with this.  
+>\- Yes, that is mighty good.  
+
+## Setting the Scene ##
 
 So I used a MacBook Pro as my workstation for the first time and for a period of six months. Previously, I've never shown interest in owning a MacBook and never worked with one for an extended period. I obviously was aware of the fact that a majority of developers do  prefer the Mac OS X environment to everything else available.
 
-Turns out that my bias/instinct/gut feeling/resistance/stubbornness against working on the Mac OS X was on point because of several shortcomings of Mac OS X when subjected to my workflow habits. So here's the yay, meh, and nay aspects of working with a Macbook.
+Turns out that my bias/instinct/gut feeling/resistance/stubbornness against working on the Mac OS X was on point because of several shortcomings of Mac OS X when subjected to my workflow habits. So here's the *yay*, *meh*, and *nay* aspects of working with a Macbook.
 
 ## Yay ##
 
