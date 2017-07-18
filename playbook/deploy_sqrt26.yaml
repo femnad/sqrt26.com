@@ -1,12 +1,13 @@
 ---
 - hosts:
-    stuff
+    iridium
   name:
     Deploy sqrt26
 
   vars:
     deps:
       apt:
+        - certbot
         - haproxy
         - jekyll
     repo:
@@ -19,11 +20,40 @@
         jekyll-sqrt26
       exec:
         /usr/bin/jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site
+    certbot_standalone:
+      domains:
+        - sqrt26.com
+        - www.sqrt26.com
+        - yampir.com # until that domain expires
+        - www.yampir.com # ditto
+      agree_tos:
+        yes
+      email: !vault |
+        $ANSIBLE_VAULT;1.1;AES256
+        64393336646337373131613961616365326665633831613733303439303134353865323164626330
+        6564393236613564303931373463613431643665316561630a353136393532343137636666626232
+        33316666373266663463313665633330326434363632346166393266353163333230613934393934
+        3337646261306266310a373636393632613932643864336532636664613439326161393439373135
+        38616131623735396432613065666638396465313131633431616166623631326434
+    haproxy_config:
+      base_domain:
+        sqrt26.com
+      ip: !vault |
+        $ANSIBLE_VAULT;1.1;AES256
+        64306430316434386561396661313265663536353861613637316461613533666535646338376637
+        6533343033326631393836353037383035313661356536300a623761333436626638303061666439
+        34383638666539386337363437366462636666313835383364343366633262363361306438323532
+        6137363735636561660a316236386165306261383737383838313137393366343265333565666430
+        6235
+      backend_server:
+        127.0.0.1:4000
 
   roles:
     - packages
     - clone
     - systemd_user_service
+    - certbot_standalone
+    - haproxy_config
 
   post_tasks:
     - name:
@@ -43,13 +73,3 @@
           yes
         state:
           restarted
-
-- import_playbook:
-    manage_certificates.yaml
-  tags:
-    certbot
-
-- import_playbook:
-    configure_haproxy.yaml
-  tags:
-    haproxy
