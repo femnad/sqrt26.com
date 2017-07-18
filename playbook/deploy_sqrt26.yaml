@@ -24,8 +24,6 @@
       domains:
         - sqrt26.com
         - www.sqrt26.com
-        - yampir.com # until that domain expires
-        - www.yampir.com # ditto
       agree_tos:
         yes
       email: !vault |
