@@ -13,13 +13,6 @@
     repo:
       url:
         https://github.com/femnad/sqrt26.com.git
-    user_service:
-      description:
-        Jekyll server for sqrt26.com
-      name:
-        jekyll-sqrt26
-      exec:
-        /usr/bin/jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site
     certbot_standalone:
       domains:
         - sqrt26.com
@@ -49,7 +42,6 @@
   roles:
     - packages
     - clone
-    - systemd_user_service
     - certbot_standalone
     - haproxy_config
 
@@ -63,11 +55,17 @@
           "{{ source.path }}/jekyll"
 
     - name:
-        Restart Jekyll
-      systemd:
-        name:
-          jekyll-sqrt26
-        user:
-          yes
-        state:
-          restarted
+        Check for running jekyll
+      command:
+        pgrep -af jekyll
+      register:
+        running_jekyll
+      ignore_errors:
+        yes
+
+    - name:
+        Start Jekyll
+      command:
+        jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site -B
+      when:
+        running_jekyll.failed
