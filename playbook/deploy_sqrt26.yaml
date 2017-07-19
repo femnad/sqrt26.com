@@ -38,12 +38,16 @@
         6665
       backend_server:
         127.0.0.1:4000
+    run_if_not_running:
+      command:
+        jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site -B
 
   roles:
     - packages
     - clone
     - certbot_standalone
     - haproxy_config
+    - run_if_not_running
 
   post_tasks:
     - name:
@@ -53,19 +57,3 @@
       args:
         chdir:
           "{{ source.path }}/jekyll"
-
-    - name:
-        Check for running jekyll
-      command:
-        pgrep -af jekyll
-      register:
-        running_jekyll
-      ignore_errors:
-        yes
-
-    - name:
-        Start Jekyll
-      command:
-        jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site -B
-      when:
-        running_jekyll.failed
