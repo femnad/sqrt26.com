@@ -38,6 +38,14 @@
         6665
       backend_server:
         127.0.0.1:4000
+      backend:
+        sqrt26
+      frontend:
+        http:
+          sqrt26-http
+        https:
+          sqrt26-https
+
     run_if_not_running:
       command:
         jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site -B
