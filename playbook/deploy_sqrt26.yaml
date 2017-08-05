@@ -40,22 +40,25 @@
         127.0.0.1:4000
       backend:
         sqrt26
-      frontend:
-        http:
-          sqrt26-http
-        https:
-          sqrt26-https
 
-    run_if_not_running:
-      command:
-        jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site -B
+    user_service:
+      description:
+        Jekyll daemon for sqrt26.com
+      name:
+        jekyll-sqrt26
+      exec:
+        /usr/bin/jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site
+      unit_file:
+        service:
+          - Restart:
+              always
 
   roles:
     - packages
     - clone
+    - systemd_user_service
     - certbot_standalone
     - haproxy_config
-    - run_if_not_running
 
   post_tasks:
     - name:
