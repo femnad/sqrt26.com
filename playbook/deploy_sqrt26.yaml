@@ -41,13 +41,14 @@
       backend:
         sqrt26
 
-    user_service:
+    systemd_service:
+      absolute_exec: false
       description:
         Jekyll daemon for sqrt26.com
       name:
         jekyll-sqrt26
       exec:
-        /usr/bin/jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site
+        jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site
       unit_file:
         service:
           - Restart:
@@ -56,7 +57,7 @@
   roles:
     - packages
     - clone
-    - systemd_user_service
+    - systemd-service
     - haproxy_config
 
   post_tasks:
