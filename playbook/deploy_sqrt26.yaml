@@ -43,10 +43,9 @@
         jekyll-sqrt26
       exec:
         jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site
-      unit_file:
-        service:
-          - Restart:
-              always
+      service:
+        Restart:
+          always
 
   roles:
     - packages
