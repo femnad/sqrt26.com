@@ -9,7 +9,7 @@
       apt:
         - certbot
         - haproxy
-        - jekyll
+        - hugo
     repo:
       url:
         https://github.com/femnad/sqrt26.com.git
@@ -38,14 +38,11 @@
     systemd_service:
       absolute_exec: false
       description:
-        Jekyll daemon for sqrt26.com
+        Hugo server for sqrt26.com
       name:
-        jekyll-sqrt26
+        hugo-sqrt26
       exec:
-        jekyll serve -s {{ source.path }}/jekyll -d {{ source.path }}/jekyll/_site
-      service:
-        Restart:
-          always
+        hugo server -s {{ source.path }}/hugo
 
   roles:
     - packages
@@ -53,12 +50,3 @@
     - certbot_standalone
     - systemd-service
     - haproxy_config
-
-  post_tasks:
-    - name:
-        Build static files
-      command:
-        jekyll build
-      args:
-        chdir:
-          "{{ source.path }}/jekyll"
