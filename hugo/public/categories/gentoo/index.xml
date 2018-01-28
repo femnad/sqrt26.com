@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gentoo on I Am Going to Forget These</title>
+    <link>https://www.sqrt26.com/categories/gentoo/</link>
+    <description>Recent content in Gentoo on I Am Going to Forget These</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Sep 2014 20:36:21 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.sqrt26.com/categories/gentoo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Where in the World is Package Sandiego</title>
+      <link>https://www.sqrt26.com/2014/09/10/where-in-the-world-is-package-sandiego/</link>
+      <pubDate>Wed, 10 Sep 2014 20:36:21 +0000</pubDate>
+      
+      <guid>https://www.sqrt26.com/2014/09/10/where-in-the-world-is-package-sandiego/</guid>
+      <description>So there is a utility called Portage File List for Gentoo Linux, which is the best way to search for a package. Next time try to remember that.</description>
+    </item>
+    
+  </channel>
+</rss>

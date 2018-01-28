@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pkg Config on I Am Going to Forget These</title>
+    <link>https://www.sqrt26.com/categories/pkg-config/</link>
+    <description>Recent content in Pkg Config on I Am Going to Forget These</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Sep 2014 10:19:05 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.sqrt26.com/categories/pkg-config/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>I Am the Cure!</title>
+      <link>https://www.sqrt26.com/2014/09/11/i-am-the-cure/</link>
+      <pubDate>Thu, 11 Sep 2014 10:19:05 +0000</pubDate>
+      
+      <guid>https://www.sqrt26.com/2014/09/11/i-am-the-cure/</guid>
+      <description>If you encounter such an error during the configure state of a package:
+./configure: line foo: syntax error near unexpected token `something,&#39; ./configure: line bar: `PKG_CHECK_MODULES(something, libsomething)&#39;  that means pkg-config is not installed.</description>
+    </item>
+    
+  </channel>
+</rss>
