@@ -27,14 +27,10 @@
         3337646261306266310a373636393632613932643864336532636664613439326161393439373135
         38616131623735396432613065666638396465313131633431616166623631326434
     haproxy_config:
-      base_domain:
-        sqrt26.com
+      base_domain: sqrt26.com
       ip: "{{ ansible_default_ipv4.address }}"
-      backend_server:
-        127.0.0.1:4000
-      backend:
-        sqrt26
-
+      backend_server: 127.0.0.1:1313
+      backend: sqrt26
     systemd_service:
       absolute_exec: false
       description:
