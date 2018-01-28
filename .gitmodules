@@ -1,0 +1,3 @@
+[submodule "hugo/themes/fool"]
+	path = hugo/themes/fool
+	url = git@github.com:femnad/hugo-theme-fool
