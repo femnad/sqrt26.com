@@ -35,7 +35,8 @@
 
   roles:
     - packages
-    - clone
+    - role: clone
+      tags: regen
     - certbot_standalone
     - nginx-site
 
@@ -44,3 +45,4 @@
       command: hugo
       args:
         chdir: "{{ source.path }}/hugo"
+      tags: regen
