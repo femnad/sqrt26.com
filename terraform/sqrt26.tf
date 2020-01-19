@@ -5,10 +5,17 @@ variable project {}
 variable service_account_file {}
 variable ssh_user {}
 
+locals {
+  allow_traffic = {
+    "80,443" = "tcp"
+  }
+}
+
 module "instance-module" {
   source  = "femnad/instance-module/gcp"
-  version = "0.2.2"
+  version = "0.3.0"
   github_user = "femnad"
+  public_traffic_from = locals.allow_traffic
   prefix = "sqrt26"
   project = var.project
   service_account_file = var.service_account_file
