@@ -1,55 +1,27 @@
-variable "do_token" {}
-variable "current_ip" {}
+variable dns_name {}
+variable dns_root {}
+variable managed_zone {}
+variable project {}
+variable service_account_file {}
+variable ssh_user {}
 
-provider "digitalocean" {
-  token = "${var.do_token}"
+module "instance-module" {
+  source  = "femnad/instance-module/gcp"
+  version = "0.2.2"
+  github_user = "femnad"
+  prefix = "sqrt26"
+  project = var.project
+  service_account_file = var.service_account_file
+  ssh_user = var.ssh_user
 }
 
-resource "digitalocean_droplet" "sqrt26-droplet" {
-  image = "ubuntu-18-04-x64"
-  name = "iridium"
-  region = "lon1"
-  size = "s-1vcpu-1gb"
-  ssh_keys = [12557229]
-}
-
-resource "digitalocean_firewall" "sqrt26-firewall" {
-  name = "ssh-restricted"
-
-  droplet_ids = ["${digitalocean_droplet.sqrt26-droplet.id}"]
-
-  inbound_rule = [
-    {
-      protocol = "tcp"
-      port_range = "22"
-      source_addresses = ["${var.current_ip}"]
-    },
-    {
-      protocol = "tcp"
-      port_range = "80"
-      source_addresses = ["0.0.0.0/0", "::/0"]
-    },
-    {
-      protocol = "tcp"
-      port_range = "443"
-      source_addresses = ["0.0.0.0/0", "::/0"]
-    },
-  ]
-
-  outbound_rule = [
-    {
-      protocol = "tcp"
-      port_range = "1-65535"
-      destination_addresses = ["0.0.0.0/0", "::/0"]
-    },
-    {
-      protocol = "udp"
-      port_range = "1-65535"
-      destination_addresses = ["0.0.0.0/0", "::/0"]
-    },
-    {
-      protocol = "icmp"
-      destination_addresses = ["0.0.0.0/0", "::/0"]
-    }
-  ]
+module "dns-module" {
+  source  = "femnad/dns-module/gcp"
+  version = "0.1.3"
+  dns_name = var.dns_name
+  dns_root = var.dns_root
+  instance_ip_addr = module.instance-module.instance_ip_addr
+  managed_zone = var.managed_zone
+  project = var.project
+  service_account_file = var.service_account_file
 }
