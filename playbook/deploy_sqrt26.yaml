@@ -1,5 +1,5 @@
 ---
-- hosts: iridium
+- hosts: sqrt26
   name: Deploy sqrt26.com
 
   vars:

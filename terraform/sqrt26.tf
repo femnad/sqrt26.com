@@ -13,9 +13,9 @@ locals {
 
 module "instance-module" {
   source  = "femnad/instance-module/gcp"
-  version = "0.3.0"
+  version = "0.3.1"
   github_user = "femnad"
-  public_traffic_from = locals.allow_traffic
+  public_traffic_from = local.allow_traffic
   prefix = "sqrt26"
   project = var.project
   service_account_file = var.service_account_file
@@ -24,7 +24,7 @@ module "instance-module" {
 
 module "dns-module" {
   source  = "femnad/dns-module/gcp"
-  version = "0.1.3"
+  version = "0.1.4"
   dns_name = var.dns_name
   dns_root = var.dns_root
   instance_ip_addr = module.instance-module.instance_ip_addr
