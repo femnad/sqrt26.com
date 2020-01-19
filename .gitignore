@@ -5,3 +5,4 @@ _site
 hugo/public/
 terraform/terraform.tfstate*
 terraform/.terraform/
+terraform/.terraform.tfstate.lock.info

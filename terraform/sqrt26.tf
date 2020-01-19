@@ -13,7 +13,7 @@ locals {
 
 module "instance-module" {
   source  = "femnad/instance-module/gcp"
-  version = "0.3.1"
+  version = "0.3.2"
   github_user = "femnad"
   public_traffic_from = local.allow_traffic
   prefix = "sqrt26"
