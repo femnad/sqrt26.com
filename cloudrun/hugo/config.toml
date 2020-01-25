@@ -1,0 +1,5 @@
+baseURL = "https://www.sqrt26.com"
+disablePathToLower = true
+languageCode = "en-us"
+title = "I Am Going to Forget These"
+theme = "fool"
