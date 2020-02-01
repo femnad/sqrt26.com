@@ -1,5 +1,5 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/sqrt26:latest', '.' ]
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/sqrt26:$TAG_NAME', '.' ]
 images:
-- 'gcr.io/$PROJECT_ID/sqrt26:latest'
+- 'gcr.io/$PROJECT_ID/sqrt26:$TAG_NAME'

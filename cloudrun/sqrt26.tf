@@ -9,9 +9,10 @@ resource "null_resource" "submit-build" {
 
   triggers = {
     build-file-content = filesha512("cloudbuild.yaml")
+    tag = var.tag
   }
   provisioner "local-exec" {
-    command = "gcloud builds submit --config cloudbuild.yaml ."
+    command = "gcloud builds submit --config cloudbuild.yaml --substitutions=TAG_NAME=${var.tag} ."
   }
 
 }
@@ -78,7 +79,7 @@ resource "google_dns_record_set" "verification-txt" {
 
   managed_zone = var.managed_zone
 
-  rrdatas = [var.verification_txt]
+  rrdatas = [var.verification_text]
 }
 
 resource "google_dns_record_set" "www-cname" {

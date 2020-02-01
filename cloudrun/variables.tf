@@ -1,4 +1,5 @@
 variable dns_name {}
+variable dns_root {}
 variable mapped_domain {}
 variable managed_zone {}
 variable project {}
@@ -22,5 +23,5 @@ variable cloud_run_ipv4_addrs {
 }
 
 variable tag {
-  default = "latest"
+  default = "1580591540"
 }
