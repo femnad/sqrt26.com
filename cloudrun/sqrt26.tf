@@ -92,16 +92,6 @@ resource "google_dns_record_set" "www-cname" {
   rrdatas = ["ghs.googlehosted.com."]
 }
 
-resource "google_dns_record_set" "root-ipv4-dns" {
-  name = var.dns_root
-  type = "A"
-  ttl  = 60
-
-  managed_zone = var.managed_zone
-
-  rrdatas = ["216.239.32.21", "216.239.34.21", "216.239.36.21", "216.239.38.21"]
-}
-
 resource "google_cloud_run_domain_mapping" "sqrt26-mapping" {
   location = var.cloud_run_location
   name     = var.mapped_domain
